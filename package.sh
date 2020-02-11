@@ -10,3 +10,5 @@ rm -rf ./bin
 
 rm -rf ./node_exporter-$1.$2.tar.gz
 rm -rf ./node_exporter-$1.$2
+
+git checkout -- nfpm.yaml
