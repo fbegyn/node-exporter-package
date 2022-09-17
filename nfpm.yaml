@@ -3,25 +3,21 @@ name: "node-exporter"
 arch: "amd64"
 platform: "linux"
 version: "vx.y.x"
+release: 1
 section: "default"
 priority: "extra"
 maintainer: "Francis Begyn <francis@begyn.be>"
 description: |
-  Prometheus time series monitoring system
-vendor: "Francis"
+  Exporter for machine metrics
+vendor: "Prometheus"
 homepage: "https://github.com/prometheus/node_exporter"
-license: "MIT"
-bindir: "/usr/sbin"
-files:
-  ./node_exporter.service: "/etc/systemd/system/node_exporter.service"
-  ./bin/node_exporter: "/usr/sbin/node_exporter"
-overrides:
-  rpm:
-    scripts:
-      preinstall: ./scripts/preinstall.sh
-      postremove: ./scripts/postremove.sh
-  deb:
-    scripts:
-      postinstall: ./scripts/postinstall.sh
-      preremove: ./scripts/preremove.sh
-      postremove: ./scripts/postremove.sh
+license: "Apache License 2"
+contents:
+  - src: ./node_exporter.service
+    dst: /etc/systemd/system/node_exporter.service
+  - src: ./node_exporter
+    dst: /usr/sbin/node_exporter
+scripts:
+  postinstall: ./scripts/postinstall.sh
+  preremove: ./scripts/preremove.sh
+  postremove: ./scripts/postremove.sh
